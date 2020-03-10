@@ -7,7 +7,6 @@ It's composed by  4 modules. fluance-cockpit-app, fluance-cockpit-core, fluance-
 * fluance-cockpit-app : contains the Controller, and the service layers.
 * fluance-cockpit-core : contains the Data Layer (JPA/JDBC repositories, and Models)   
 * fluance-cockpit-solr : a Solr Client Service
-* fluance-cockpit-synlab : Integration Service with Synlab (Using SOAP)
 
 ## Getting Started
 
@@ -15,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Get the Project from a Git repository and build it: 
 ```
-git pull https://bitbucket.org/fluancedev/mw-app.git
+git pull https://github.com/Fluance/fec-mw-app 
 cd mw-app/
 mvn clean install -DskipTests
 ```
@@ -89,7 +88,7 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
 
 ## Acknowledgments
 
