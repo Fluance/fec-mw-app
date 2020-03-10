@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.fluance.cockpit</groupId>
+		<artifactId>fluance-cockpit</artifactId>
+		<version>4.1.14-RELEASE</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>fluance-cockpit-core</artifactId>
+	<packaging>jar</packaging>
+
+	<name>fluance-cockpit-core</name>
+	<description>fluance-cockpit-core</description>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<postgresql.version>9.4-1205-jdbc42</postgresql.version>
+		<org.wso2.carbon.identity.entitlement.stub.version>4.2.0</org.wso2.carbon.identity.entitlement.stub.version>
+		<jdbcrepository.version>0.4</jdbcrepository.version>
+		<json.version>20151123</json.version>
+		<ant-junit.version>1.9.4</ant-junit.version>
+		<gson.version>2.2.2</gson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wso2.carbon</groupId>
+			<artifactId>org.wso2.carbon.identity.entitlement.stub</artifactId>
+			<version>${org.wso2.carbon.identity.entitlement.stub.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.nurkiewicz.jdbcrepository</groupId>
+			<artifactId>jdbcrepository</artifactId>
+			<version>${jdbcrepository.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant-junit</artifactId>
+			<version>${ant-junit.version}</version>
+		</dependency>
+		<dependency>
+	        <groupId>com.google.code.gson</groupId>
+	        <artifactId>gson</artifactId>
+	        <version>${gson.version}</version>
+	    </dependency>
+	</dependencies>
+
+	<!-- used org.wso2.carbon.identity.entitlement.stub -->
+	<repositories>
+		<repository>
+			<id>wso2-maven2-repository</id>
+			<name>WSO2 Maven2 Repository</name>
+			<url>http://dist.wso2.org/maven2</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+		</repository>
+	</repositories>
+
+</project>

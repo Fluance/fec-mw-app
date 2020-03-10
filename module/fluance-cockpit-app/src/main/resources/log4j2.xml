@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+	<Appenders>
+		<RollingFile name="CockpitFileLogger"
+			fileName="${sys:catalina.home}/logs/fluance-cockpit-app.log"
+			filePattern="${sys:catalina.home}/logs/$${date:yyyy-MM-dd}/fluance-cockpit-app-%d{MM-dd-yyyy}-%i.log"
+			append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</Console>
+		<JDBC name="PatientLogsDBAppender" tableName="ehealth.user_access">
+			<ConnectionFactory
+				class="net.fluance.cockpit.app.config.LogConnectionFactory" method="getDatabaseConnection" />
+			<Column name="appuser" isUnicode="false" pattern="%X{username}" />
+			<Column name="firstname" isUnicode="false" pattern="%X{firstName}" />
+			<Column name="lastname" isUnicode="false" pattern="%X{lastName}" />
+			<Column name="logdt" isEventTimestamp="true" />
+			<Column name="displayname" isUnicode="false" pattern="%X{displayName}" />
+			<Column name="objectid" isUnicode="false" pattern="%X{resourceId}" />
+			<Column name="objecttype" isUnicode="false" pattern="%X{resourceType}" />
+			<Column name="httpmethod" isUnicode="false" pattern="%X{httpMethod}" />
+			<Column name="externaluser" isUnicode="false" pattern="%X{actualUserName}" />
+			<Column name="externalfirstname" isUnicode="false" pattern="%X{actualFirstName}" />
+			<Column name="externallastname" isUnicode="false" pattern="%X{actualLastName}" />
+			<Column name="externalemail" isUnicode="false" pattern="%X{actualEmail}"/>
+			<Column name="parentpid" isUnicode="false" pattern="%X{parentPid}"/>
+			<Column name="parentvn" isUnicode="false" pattern="%X{parentVisitNb}"/>
+		</JDBC>
+		
+		<JDBC name="SystemLogsDBAppender" tableName="ehealth.system_access">
+			<ConnectionFactory
+				class="net.fluance.cockpit.app.config.LogConnectionFactory" method="getDatabaseConnection" />
+			<Column name="appuser" isUnicode="false" pattern="%X{username}" />
+			<Column name="logdt" isEventTimestamp="true" />
+			<Column name="objectid" isUnicode="false" pattern="%X{resourceId}" />
+			<Column name="objecttype" isUnicode="false" pattern="%X{resourceType}" />
+			<Column name="httpmethod" isUnicode="false" pattern="%X{httpMethod}" />
+			<Column name="uri" isUnicode="false" pattern="%X{uri}" />
+			<Column name="parameters" isUnicode="false" pattern="%X{parameters}" />
+			<Column name="parentpid" isUnicode="false" pattern="%X{parentPid}">
+			</Column>
+			<Column name="parentvn" isUnicode="false" pattern="%X{parentVisitNb}">
+			</Column>
+		</JDBC>
+		
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="CockpitFileLogger" />
+			<AppenderRef ref="CONSOLE"/>
+		</Root>
+		<AsyncLogger
+			name="net.fluance.cockpit.app.service.log.PatientAccessLogService"
+			level="info" includeLocation="true">
+			<AppenderRef ref="PatientLogsDBAppender" />
+			<AppenderRef ref="SystemLogsDBAppender" />
+		</AsyncLogger>
+		<AsyncLogger
+			name="net.fluance.app.web.service.CommonSystemAccessLogService"
+			level="info" includeLocation="true">
+			<AppenderRef ref="SystemLogsDBAppender" />
+		</AsyncLogger>
+		
+	</Loggers>
+</Configuration>
