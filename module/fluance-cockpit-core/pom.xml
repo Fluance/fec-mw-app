@@ -18,7 +18,7 @@
 
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
-		<postgresql.version>9.4-1205-jdbc42</postgresql.version>
+		<postgresql.version>42.3.7</postgresql.version>
 		<org.wso2.carbon.identity.entitlement.stub.version>4.2.0</org.wso2.carbon.identity.entitlement.stub.version>
 		<jdbcrepository.version>0.4</jdbcrepository.version>
 		<json.version>20151123</json.version>
